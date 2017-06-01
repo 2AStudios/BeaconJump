@@ -1,0 +1,167 @@
+
+ruby.png
+size: 512,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+rubyattack0
+  rotate: false
+  xy: 2, 370
+  size: 95, 90
+  orig: 95, 90
+  offset: 0, 0
+  index: -1
+rubyattack1
+  rotate: false
+  xy: 2, 278
+  size: 95, 90
+  orig: 95, 90
+  offset: 0, 0
+  index: -1
+rubyattack2
+  rotate: false
+  xy: 99, 370
+  size: 95, 90
+  orig: 95, 90
+  offset: 0, 0
+  index: -1
+rubyattack3
+  rotate: false
+  xy: 2, 186
+  size: 95, 90
+  orig: 95, 90
+  offset: 0, 0
+  index: -1
+rubycrouch0
+  rotate: false
+  xy: 388, 370
+  size: 93, 90
+  orig: 93, 90
+  offset: 0, 0
+  index: -1
+rubycrouch1
+  rotate: false
+  xy: 98, 2
+  size: 93, 90
+  orig: 93, 90
+  offset: 0, 0
+  index: -1
+rubycrouch2
+  rotate: false
+  xy: 194, 94
+  size: 93, 90
+  orig: 93, 90
+  offset: 0, 0
+  index: -1
+rubydamage0
+  rotate: false
+  xy: 291, 186
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+rubydamage1
+  rotate: false
+  xy: 387, 278
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+rubydamage2
+  rotate: false
+  xy: 282, 2
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+rubydamage3
+  rotate: false
+  xy: 380, 186
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+rubydamage4
+  rotate: false
+  xy: 193, 2
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+rubydamage5
+  rotate: false
+  xy: 289, 94
+  size: 87, 90
+  orig: 87, 90
+  offset: 0, 0
+  index: -1
+rubyjump0
+  rotate: false
+  xy: 99, 278
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump1
+  rotate: false
+  xy: 196, 370
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump2
+  rotate: false
+  xy: 2, 94
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump3
+  rotate: false
+  xy: 99, 186
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump4
+  rotate: false
+  xy: 195, 278
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump5
+  rotate: false
+  xy: 292, 370
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump6
+  rotate: false
+  xy: 2, 2
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump7
+  rotate: false
+  xy: 98, 94
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump8
+  rotate: false
+  xy: 195, 186
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
+rubyjump9
+  rotate: false
+  xy: 291, 278
+  size: 94, 90
+  orig: 94, 90
+  offset: 0, 0
+  index: -1
