@@ -34,6 +34,7 @@ public class Assets {
 
     //Game Resources
     public static TextureAtlas rubySpritesAtlas;
+    public static TextureAtlas platformAtlas;
 
     public static Texture loadTexture (String file) {
         return new Texture(Gdx.files.internal(file));
@@ -50,6 +51,7 @@ public class Assets {
         logoBeaconAnim = new Animation(0.2f,new TextureRegion(logoBeaconJumpAnimFrames,0,0,600,1280), new TextureRegion(logoBeaconJumpAnimFrames,600,0,600,1280), new TextureRegion(logoBeaconJumpAnimFrames,1200,0,600,1280), new TextureRegion(logoBeaconJumpAnimFrames,1800,0,600,1280), new TextureRegion(logoBeaconJumpAnimFrames,2400,0,600,1280));
 
         rubySpritesAtlas = new TextureAtlas(Gdx.files.internal("data/characterspritesheets/ruby.atlas"));
+        platformAtlas = new TextureAtlas(Gdx.files.internal("data/characterspritesheets/platform.atlas"));
 
         playbutton = loadTexture("data/buttons/playbtn.png");
         creditsbutton = loadTexture("data/buttons/creditsbtn.png");

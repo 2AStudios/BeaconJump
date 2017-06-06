@@ -1,0 +1,33 @@
+platform.png
+size: 128,160
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+platform0
+  rotate: false
+  xy: 0, 0
+  size: 128, 40
+  orig: 128, 40
+  offset: 0, 0
+  index: -1
+platform1
+  rotate: false
+  xy: 0, 40
+  size: 128, 40
+  orig: 128, 40
+  offset: 0, 0
+  index: -1
+platform2
+  rotate: false
+  xy: 0, 80
+  size: 128, 40
+  orig: 128, 40
+  offset: 0, 0
+  index: -1
+platform3
+  rotate: false
+  xy: 0, 120
+  size: 128, 40
+  orig: 128, 40
+  offset: 0, 0
+  index: -1
