@@ -7,6 +7,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import java.util.ArrayList;
 
 
 /**
@@ -14,9 +15,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  */
 
 public class MainGame extends ScreenAdapter {
+
     private Stage gameStage;
     BeaconJump game;
     PlayerSprite player;
+    ArrayList<PlatformSprite> platfromList;
+    float gameY;
 
     public MainGame(BeaconJump game){
         this.game = game;
@@ -24,14 +28,21 @@ public class MainGame extends ScreenAdapter {
         Gdx.input.setInputProcessor(gameStage);
         player = new PlayerSprite();
         gameStage.addActor(player);
-        Gdx.input.setInputProcessor(new InputAdapter(){
+        /*Gdx.input.setInputProcessor(new InputAdapter(){
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 player.jump();
                 return true;
             }
 
-        });
+        });*/
+        platfromList = new ArrayList<PlatformSprite>();
+        gameY = 0;
+        for(int i = 0; i < 8;i++){
+            platfromList.add(new PlatformSprite((Gdx.graphics.getHeight()/8)*i,100,(float)(Math.random()*Gdx.graphics.getWidth())));
+            //System.out.println(platfromList.get(i).actorX + "," + (float)(Math.random()*Gdx.graphics.getWidth()));
+            gameStage.addActor(platfromList.get(i));
+        }
 
     }
 
@@ -43,6 +54,12 @@ public class MainGame extends ScreenAdapter {
     public void act(){
         float accelX = Gdx.input.getAccelerometerX();
         player.velocityX = -accelX;
+        for(PlatformSprite platform : platfromList){
+            platform.actorY = platform.gameY - this.gameY;
+            if(platform.bounds.overlaps(player.bounds) && player.velocityY < 0){
+                player.jump();
+            }
+        }
     }
 
     @Override
