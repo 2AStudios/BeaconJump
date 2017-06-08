@@ -1,6 +1,7 @@
 package com.studios2a.beaconjump;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -27,7 +28,7 @@ public class PlatformSprite extends Actor {
     public Rectangle bounds;
     Animation spriteAnim;
 
-    //private ShapeRenderer shapeRenderer;
+    private ShapeRenderer shapeRenderer;
 
 
     public PlatformSprite(float gameY, float setY, float setX){
@@ -36,12 +37,12 @@ public class PlatformSprite extends Actor {
         setOrigin(getWidth()/2,getHeight()/2);
         sprite.setScale(2f);
         spriteAnim  = new Animation(1/10f,Assets.platformAtlas.getRegions());
-        this.bounds = new Rectangle(this.actorX - getWidth() / 2, this.actorY - getHeight() / 2, this.getWidth(), this.getHeight());
+        this.bounds = new Rectangle(this.actorX - 118, this.actorY - 22, 236, 44);
         this.gameY = gameY;
         this.actorY = setY;
         this.actorX = setX;
 
-        //shapeRenderer = new ShapeRenderer();
+        shapeRenderer = new ShapeRenderer();
     }
 
     public void updateGameY(float setY){
@@ -51,13 +52,20 @@ public class PlatformSprite extends Actor {
     @Override
     public void act(float delta) {
         sprite.setPosition(getX(),getY()); //Move Image to Actor
-        this.bounds.setPosition(this.actorX - getWidth() / 2, this.actorY - getHeight() / 2);
+        this.bounds.setPosition(this.actorX - (getWidth() / 2), this.actorY - (getHeight() / 2));
         sprite.setPosition(actorX,actorY);
         super.act(delta);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        if(MainGame.HitboxMode) {
+            shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(Color.BLUE);
+            shapeRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+            shapeRenderer.end();
+        }
         sprite.draw(batch);
         //super.draw(batch, parentAlpha);
     }

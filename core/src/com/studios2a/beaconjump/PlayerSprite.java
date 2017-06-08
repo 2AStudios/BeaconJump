@@ -1,6 +1,7 @@
 package com.studios2a.beaconjump;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -29,7 +30,7 @@ public class PlayerSprite extends Actor {
 
     boolean isLeft = false;
 
-    //private ShapeRenderer shapeRenderer;
+    private ShapeRenderer shapeRenderer;
 
 
     public PlayerSprite(){
@@ -39,9 +40,9 @@ public class PlayerSprite extends Actor {
         sprite.setScale(3f);
         spriteAnim  = new Animation(1/10f,Assets.rubySpritesAtlas.getRegions());
 
-        this.bounds = new Rectangle(this.actorX - getWidth() / 2, this.actorY - getHeight() / 2, this.getWidth(), this.getHeight());
+        this.bounds = new Rectangle(this.actorX - 66, this.actorY - 122, 188, 180);
 
-        //shapeRenderer = new ShapeRenderer();
+        shapeRenderer = new ShapeRenderer();
     }
 
     @Override
@@ -137,6 +138,15 @@ public class PlayerSprite extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        if(MainGame.HitboxMode) {
+            shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(Color.BLUE);
+            shapeRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+            shapeRenderer.setColor(Color.BLACK);
+            shapeRenderer.rect(bounds.x - 14, bounds.y + 32, 104, 80);
+            shapeRenderer.end();
+        }
         sprite.draw(batch);
         //super.draw(batch, parentAlpha);
     }
