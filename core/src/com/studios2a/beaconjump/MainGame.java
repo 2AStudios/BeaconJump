@@ -5,6 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
@@ -22,6 +25,10 @@ public class MainGame extends ScreenAdapter {
     ArrayList<PlatformSprite> platfromList;
     float platformSpacing;
     float gameY;
+    BitmapFont scoreFont;
+
+    int skywrap = 10;
+    int score = 0;
 
     public static final boolean HitboxMode = false;
 
@@ -39,6 +46,11 @@ public class MainGame extends ScreenAdapter {
             }
 
         });*/
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("data/RWBY Font.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 72;
+        scoreFont = generator.generateFont(parameter);
+
         platfromList = new ArrayList<PlatformSprite>();
         gameY = 0;
         platformSpacing = (Gdx.graphics.getHeight()/8);
@@ -59,6 +71,7 @@ public class MainGame extends ScreenAdapter {
 
     public void act(){
         float accelX = Gdx.input.getAccelerometerX();
+        if(platformSpacing < (Gdx.graphics.getHeight()/8)*2) platformSpacing = (Gdx.graphics.getHeight()/8) + (int)(score);
         player.velocityX = -accelX;
         if(player.actorY > Gdx.graphics.getHeight()/2){
             /*if(gameY%platformSpacing < (gameY+player.actorY-(Gdx.graphics.getHeight()/2))%platformSpacing){
@@ -82,16 +95,35 @@ public class MainGame extends ScreenAdapter {
         }
         if(gameY > 15 && player.actorY <= 20){
             System.out.println("Game Over");
+            player.remove();
+            game.setScreen(new MainMenu(game));
         }
     }
 
     @Override
     public void render(float delta) {
         act();
-        Gdx.gl.glClearColor(145/255f, 204/255f, 237/255f, 1);
+        Gdx.gl.glClearColor(132/255f, 190/255f, 228/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        gameStage.getBatch().begin();
+        gameStage.getBatch().draw(Assets.backgroundsky, 0, 1000, skywrap, 500, 1080, 650); skywrap++; if(skywrap == 1055)skywrap=10;
+        gameStage.getBatch().draw(Assets.backgroundRegion, 0, 0, 1080,1920);
+        ParticleEffect splash = Assets.splashParticle;
+        splash.start();
+        splash.setPosition(0,652);
+        splash.draw(gameStage.getBatch(),delta);
+        gameStage.getBatch().end();
+
         gameStage.act(Gdx.graphics.getDeltaTime());
         gameStage.draw();
+
+        gameStage.getBatch().begin();
+        scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        if(score < (int)((gameY + player.actorY)/100)) score = (int)((gameY + player.actorY)/100);
+        scoreFont.draw(gameStage.getBatch(), "Score: " + score, 25, Gdx.graphics.getHeight()-100);
+        gameStage.getBatch().end();
+
+
     }
 
     @Override
