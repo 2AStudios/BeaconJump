@@ -43,10 +43,12 @@ public class MainGame extends ScreenAdapter {
         gameY = 0;
         platformSpacing = (Gdx.graphics.getHeight()/8);
         for(int i = 0; i < 8;i++){
-            platfromList.add(new PlatformSprite(platformSpacing*i,100,(float)(Math.random()*Gdx.graphics.getWidth())));
+            platfromList.add(new PlatformSprite(platformSpacing*i,100,(float)(Math.random()*(Gdx.graphics.getWidth()-100))));
             //System.out.println(platfromList.get(i).actorX + "," + (float)(Math.random()*Gdx.graphics.getWidth()));
             gameStage.addActor(platfromList.get(i));
         }
+        player.actorX = platfromList.get(0).actorX;
+
 
     }
 
@@ -64,9 +66,9 @@ public class MainGame extends ScreenAdapter {
                 platfromList.add(new PlatformSprite(platformSpacing*(gameY%platformSpacing),100,(float)(Math.random()*Gdx.graphics.getWidth())));
             }*/
             gameY += player.actorY - (Gdx.graphics.getHeight() / 2);
-            System.out.println(platfromList.get(platfromList.size()-1).gameY  + platformSpacing - Gdx.graphics.getHeight()+ ", " + gameY);
+            //System.out.println(platfromList.get(platfromList.size()-1).gameY  + platformSpacing - Gdx.graphics.getHeight()+ ", " + gameY);
             if(platfromList.get(platfromList.size()-1).gameY + platformSpacing - Gdx.graphics.getHeight() < gameY){
-                platfromList.add(new PlatformSprite(platfromList.get(platfromList.size()-1).gameY + platformSpacing,100,(float)(Math.random()*Gdx.graphics.getWidth())));
+                platfromList.add(new PlatformSprite(platfromList.get(platfromList.size()-1).gameY + platformSpacing,100,(float)(Math.random()*(Gdx.graphics.getWidth()-100))));
                 gameStage.addActor(platfromList.get(platfromList.size()-1));
             }
 
@@ -78,11 +80,15 @@ public class MainGame extends ScreenAdapter {
                 player.jump();
             }
         }
+        if(gameY > 15 && player.actorY <= 20){
+            System.out.println("Game Over");
+        }
     }
 
     @Override
     public void render(float delta) {
         act();
+        Gdx.gl.glClearColor(145/255f, 204/255f, 237/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gameStage.act(Gdx.graphics.getDeltaTime());
         gameStage.draw();

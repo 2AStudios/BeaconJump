@@ -40,7 +40,7 @@ public class PlayerSprite extends Actor {
         sprite.setScale(3f);
         spriteAnim  = new Animation(1/10f,Assets.rubySpritesAtlas.getRegions());
 
-        this.bounds = new Rectangle(this.actorX - 66, this.actorY - 122, 188, 180);
+        this.bounds = new Rectangle(this.actorX, this.actorY - 122, 150, 80);
 
         shapeRenderer = new ShapeRenderer();
     }
@@ -57,7 +57,7 @@ public class PlayerSprite extends Actor {
         if(velocityY <= -12) velocityY = -12;
         if(actorX < 0) actorX = 1080;
         if(actorX > 1080) actorX = 0;
-        if(actorY <= 20) isFloating = false; else isFloating = true;
+        if(actorY <= 20) isFloating = false; else isFloating = true; //Legacy Code
         if(isFloating){ //If floating
             velocityY-=0.3;
             if(velocityY>0.4){

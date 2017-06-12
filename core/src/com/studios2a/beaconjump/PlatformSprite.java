@@ -27,6 +27,7 @@ public class PlatformSprite extends Actor {
     int animationstate = 0;
     public Rectangle bounds;
     Animation spriteAnim;
+    int animFrame = (int)(Math.random()*12);
 
     private ShapeRenderer shapeRenderer;
 
@@ -54,6 +55,13 @@ public class PlatformSprite extends Actor {
         sprite.setPosition(getX(),getY()); //Move Image to Actor
         this.bounds.setPosition(this.actorX - (getWidth() / 2), this.actorY - (getHeight() / 2));
         sprite.setPosition(actorX,actorY);
+        sprite.setRegion(Assets.platformAtlas.findRegion("platform"+(int)(animFrame/3)));
+        animFrame++;
+        if(animFrame>=12){
+            animFrame = 1;
+        }
+        gameY += (animFrame-6)/3;
+
         super.act(delta);
     }
 
